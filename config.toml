@@ -1,0 +1,142 @@
+[general]
+simulation_step = 1
+initial_step = 0
+max_steps = 1000
+log_level = "INFO"
+
+[electrolyzers]
+count = 3
+
+[electrolyzers.default]
+rated_h2_output = 500.0
+rated_power = 2500.0
+rated_current = 5000.0
+warmup_time = 15
+n2_purge_time = 5
+min_load_ratio = 0.3
+max_load_ratio = 1.0
+ramp_rate_per_min = 0.1
+overload_protection_ratio = 1.1
+electrolyte_temp_initial = 25.0
+electrolyte_temp_max_normal = 80.0
+electrolyte_temp_alarm = 80.0
+electrolyte_temp_trip = 90.0
+heat_gain_coeff = 0.1
+cooling_coeff = 1.0
+
+[electrolyzers.cell1]
+id = "cell1"
+name = "1号电解槽"
+
+[electrolyzers.cell2]
+id = "cell2"
+name = "2号电解槽"
+
+[electrolyzers.cell3]
+id = "cell3"
+name = "3号电解槽"
+
+[purifiers]
+count = 2
+
+[purifiers.default]
+capacity = 800.0
+mode = "standby"
+
+[purifiers.purifier1]
+id = "purifier1"
+name = "1号纯化器"
+mode = "active"
+
+[purifiers.purifier2]
+id = "purifier2"
+name = "2号纯化器"
+mode = "standby"
+
+[tanks]
+count = 4
+
+[tanks.default]
+design_pressure = 40.0
+volume_nm3 = 500.0
+compression_factor = 1.2
+max_fill_rate = 50.0
+alarm_pressure = 36.0
+high_pressure = 38.0
+trip_pressure = 39.0
+relief_target = 35.0
+relief_rate = 10.0
+
+[tanks.tank1]
+id = "tank1"
+name = "1号储氢罐"
+initial_pressure = 15.0
+
+[tanks.tank2]
+id = "tank2"
+name = "2号储氢罐"
+initial_pressure = 20.0
+
+[tanks.tank3]
+id = "tank3"
+name = "3号储氢罐"
+initial_pressure = 25.0
+
+[tanks.tank4]
+id = "tank4"
+name = "4号储氢罐"
+initial_pressure = 30.0
+
+[cooling_system]
+pump_count = 2
+cooling_water_temp_initial = 25.0
+cooling_water_temp_alarm = 35.0
+ambient_temp = 25.0
+pump_heat_removal = 2.0
+
+[cooling_system.pump1]
+id = "pump1"
+name = "1号冷却水泵"
+mode = "active"
+
+[cooling_system.pump2]
+id = "pump2"
+name = "2号冷却水泵"
+mode = "standby"
+
+[n2_system]
+purge_time = 5
+purge_flow = 10.0
+
+[rectifiers]
+count = 3
+overload_protection_ratio = 1.1
+
+[rectifiers.rectifier1]
+id = "rectifier1"
+name = "1号整流变压器"
+paired_cell = "cell1"
+
+[rectifiers.rectifier2]
+id = "rectifier2"
+name = "2号整流变压器"
+paired_cell = "cell2"
+
+[rectifiers.rectifier3]
+id = "rectifier3"
+name = "3号整流变压器"
+paired_cell = "cell3"
+
+[safety]
+h2_lel_one = 0.01
+h2_lel_two = 0.02
+h2_lel_three = 0.04
+ventilation_rate = 0.005
+
+[scheduler]
+load_balance_tolerance = 0.05
+target_demand_initial = 800.0
+
+[recorder]
+csv_file = "simulation_data.csv"
+history_file = "simulation_history.json"
